@@ -7,8 +7,11 @@ terraform {
   }
 }
 
+variable "gcp_project" {}
+variable "pubkey_path" {}
+
 provider "google" {
-  project     = "qwiklabs-gcp-XX-XXXXXXXXXXXX"
+  project     = var.gcp_project
   region      = "europe-west1"
 }
 
@@ -28,6 +31,7 @@ module "instance1" {
   machine_type = "e2-medium"
   instance_name = "app-server-${count.index}"
   role = "appserver"
+  pubkey_path = var.pubkey_path
 }
 
 module "instance2" {
@@ -37,5 +41,7 @@ module "instance2" {
   machine_type = "e2-medium"
   instance_name = "proxy-server"
   role = "proxy"
+  pubkey_path = var.pubkey_path
 }
+
 
