@@ -16,7 +16,7 @@ resource "google_compute_instance" "vm2" {
   }
   
   metadata = {
-    ssh-keys = "ansible:${file("/home/qa/.ssh/ansible_ssh_key.pub")}"
+    ssh-keys = "ansible:${file(var.pubkey_path)}"
   }
   
   network_interface {
@@ -27,5 +27,6 @@ resource "google_compute_instance" "vm2" {
     }
   }
 }
+
 
 
